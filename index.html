@@ -1,40 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sonolink</title>
     <link href="css/reset.css" rel="stylesheet">
     <link href="css/grid.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
 </head>
+
 <body>
     <header class="grid-con">
-        <div id="logo-con" class="box col-span-3 m-col-span-4 l-col-span-4 xl-col-span-4">
-            <p>logo</p>
+        <h1 class="hidden">Header</h1>
+        <div id="logo-con" class="col-span-3 m-col-span-4 l-col-span-4 xl-col-span-4">
+            <img id="sonolink-logo" src="images/sonolink-logo.svg" alt="sonolink logo">
         </div>
-        <nav class="box col-span-1 m-col-span-8 l-col-span-8 xl-col-span-8">
-            <p>nav</p>
+        <nav class="tablet desktop m-col-span-8 l-col-span-8 xl-col-span-8">
+            <ul>
+                <li><a href="#">About Sonolink</a></li>
+                <li><a href="#">Shop</a></li>
+            </ul>
         </nav>
+
+        <div id="mobile-nav" class="mobile col-span-1">
+            <input type="checkbox" id="overlay-input">
+            <label for="overlay-input" id="overlay-button"><span></span></label>
+            <div id="overlay">
+                <ul>
+                    <li><a href="#">About Sonolink</a>
+                    </li>
+                    <li><a href="#">Shop</a></li>
+                </ul>
+            </div>
+        </div>
     </header>
 
     <main class="grid-con">
-        <section id="hero-con" class="box col-span-4 m-col-span-12 l-col-span-12 xl-col-span-12">
+        <section id="hero-con" class="col-span-full">
             <div id="hero">
-                <p>hero/video</p>
+                <canvas id="explode-view"></canvas>
             </div>
         </section>
 
-        <div id="desc-main" class="box col-span-full m-col-span-full l-col-span-full xl-col-span-full">
-            <p>description incl. title, paragraph</p>
-        </div>
-
-        <section id="model-viewer-con" class="box col-span-4 m-col-span-12 l-col-span-12 xl-col-span-12">
-            <p>model viewer</p>
+        <section id="model-viewer-con" class="col-span-full m-col-span-full l-col-span-full xl-col-span-full">
+            <model-viewer src="models/earbud-for-mv.gltf" ar ar-modes="webxr scene-viewer quick-look" camera-controls
+                poster="images/poster.webp" shadow-intensity="1" tone-mapping="commerce">
+                <button class="Hotspot" slot="hotspot-1" data-surface="17 0 12792 16306 19323 0.208 0.079 0.712"
+                    data-visibility-attribute="visible">
+                    <div class="HotspotAnnotation">Battery Housing
+                        ---------------------
+                        Contains Battery and Chip</div>
+                </button><button class="Hotspot" slot="hotspot-2" data-surface="12 0 1030 498 48 0.786 0.023 0.191"
+                    data-visibility-attribute="visible">
+                    <div class="HotspotAnnotation">Fitment loop
+                        ---------------------
+                        Sonolink buds come with 4 fitted silicon ear-fitment pieces</div>
+                </button><button class="Hotspot" slot="hotspot-3" data-surface="10 0 56 1 50 0.249 0.625 0.127"
+                    data-visibility-attribute="visible">
+                    <div class="HotspotAnnotation">Charging Contacts
+                        ---------------------
+                        Connect buds to charging case allowing for 32 hours of battery life</div>
+                </button><button class="Hotspot" slot="hotspot-4" data-surface="15 0 2 25 1 0.249 0.282 0.469"
+                    data-visibility-attribute="visible">
+                    <div class="HotspotAnnotation">Mesh Speakers
+                        ---------------------
+                        Made from a fine mesh, our speakers put our ultra high-fidelity audio for a premium listening
+                        experience
+                    </div>
+                </button><button class="Hotspot" slot="hotspot-5"
+                    data-surface="18 0 99657 72153 81302 0.032 0.040 0.928" data-visibility-attribute="visible">
+                    <div class="HotspotAnnotation">Loop
+                        ---------------------The loop in our buds allow for an immersive listening experience so you can
+                        still be
+                        aware your surroundings and hear the world around you</div>
+                </button><button class="Hotspot" slot="hotspot-6"
+                    data-surface="18 0 75418 112718 87828 0.409 0.579 0.011" data-visibility-attribute="visible">
+                    <div class="HotspotAnnotation">Driver Housing
+                        ---------------------
+                        Our earbuds use new technology with a premium loop shaped audio driver</div>
+                </button>
+                <div class="progress-bar hide" slot="progress-bar">
+                    <div class="update-bar"></div>
+                </div>
+                <button slot="ar-button" id="ar-button">
+                    View in your space
+                </button>
+                <div id="ar-prompt">
+                    <img src="images/ar_hand_prompt.png">
+                </div>
+            </model-viewer>
         </section>
 
         <div class="desc-img box col-span-2 m-col-span-6 l-col-span-6 xl-col-span-6">
-            <p>image of earbuds</p>
+            <img src="images/earbuds-promo3.jpg" alt="sonolink buds">
         </div>
         <div class="desc-blurb box col-span-2 m-col-span-6 l-col-span-6 xl-col-span-6">
             <p>image blurb</p>
@@ -43,21 +102,56 @@
             <p>image blurb</p>
         </div>
         <div class="desc-img box col-span-2 m-col-span-6 l-col-span-6 xl-col-span-6">
-            <p>image of earbuds</p>
+            <img src="images/earbuds-promo5.jpg" alt="sonolink buds">
         </div>
-        
-        <section id="slider-con" class="box col-span-4 m-col-span-12 l-col-span-12 xl-col-span-12">
-            <p>earbuds slider</p>
+
+        <section id="xray-con" class="col-span-full m-col-span-full l-col-span-full xl-col-span-full">
+            <div class="col-span-full">
+                <div id="mobile-tablet-view">
+                    <img src="images/sonolink-bud-xray.jpg" alt="X ray view of ear bud">
+                    <img src="images/sonolink-bud-non-xray.jpg" alt="Regular view of ear bud">
+                </div>
+                <div id="outerShell">
+                    <div id="imageCon">
+                        <div class="slideImage image-right"></div> <!-- wire version -->
+                        <div class="slideImage image-left"></div> <!-- actual earbuds -->
+                        <div class="slideImage image-drag"></div> <!-- div to create black bar -->
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
     <footer class="grid-con">
-        <div id="logo-con" class="box col-span-3 m-col-span-4 l-col-span-4 xl-col-span-4">
-            <p>footer logo</p>
+        <div id="logo-con" class="col-span-3 m-col-span-4 l-col-span-4 xl-col-span-4">
+            <img id="sonolink-logo" src="images/sonolink-logo.svg" alt="sonolink logo">
         </div>
-        <nav class="box col-span-1 m-col-span-8 l-col-span-8 xl-col-span-8">
-            <p>footer nav</p>
+        <nav class="tablet desktop m-col-span-8 l-col-span-8 xl-col-span-8">
+            <ul>
+                <li><a href="#">About Sonolink</a></li>
+                <li><a href="#">Shop</a></li>
+            </ul>
         </nav>
+
+        <div id="mobile-nav" class="mobile col-span-1">
+            <input type="checkbox" id="overlay-input">
+            <label for="overlay-input" id="overlay-button"><span></span></label>
+            <div id="overlay">
+                <ul>
+                    <li><a href="#">About Sonolink</a>
+                    </li>
+                    <li><a href="#">Shop</a></li>
+                </ul>
+            </div>
+        </div>
     </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.0/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.0/ScrollTrigger.js"></script>
+
+    <!-- Loads <model-viewer> for browsers: -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.2.0/model-viewer.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
+
 </html>
